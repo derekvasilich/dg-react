@@ -6,5 +6,8 @@ describe('Navigation', () => {
       // The new url should include "/"
       cy.url().should('include', '/')
   
+      cy.get('[data-test-id="login-button"]')
+        .should('exist')
+        .should('be.visible')
     })
   })

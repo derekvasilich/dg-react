@@ -44,6 +44,7 @@ export default function Login({ setLoading, setAuthorization }) {
                 </div>
                 <a onClick={ () => dispatch(login(filters)) } 
                     disabled={ !isValid() }
+                    data-test-id="login-button"
                     className="w-100 btn btn-primary">
                         <i className="fa fa-chevron-left"></i> Login
                 </a>
