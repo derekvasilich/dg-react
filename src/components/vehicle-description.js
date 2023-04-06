@@ -2,13 +2,15 @@ import { isEmpty } from "lodash";
 import EngineDetails from "./engine-details";
 
 export default function VehicleDescription({ description }) {
-    let $engines = !isEmpty(description.engine[0]) ? description.engine : [ description.engine ];
-    let $count = $engines.length;
-    let engineClass = $count > 1 ? 'span6' : 'span12'
+    let $engines, $count, engineClass, engineDetails;
+    if (description.engine) {
+        $engines = !isEmpty(description.engine[0]) ? description.engine : [ description.engine ];
+        $count = $engines.length;
+        engineClass = $count > 1 ? 'span6' : 'span12'
 
-    let engineDetails = ''
-    if ( $engines ) {
-        engineDetails = $engines.map(($engine, index) => <EngineDetails key={ index } $engine={ $engine } engineclassName={ engineClass } /> )
+        if ( $engines ) {
+            engineDetails = $engines.map( ($engine, index) => <EngineDetails key={ index } $engine={ $engine } engineclassName={ engineClass } /> )
+        }
     }
 
     return (
