@@ -6,6 +6,7 @@ import VehicleDescription from "@/components/vehicle-description"
 import { getVehicleById, selectCurrentVehicle, selectLoading } from "@/store/vehicleSlice"
 import { useDispatch, connect } from 'react-redux';
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const VehicleDisplay = ({ vehicleId, currentVehicle, isLoading }) => {
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const VehicleDisplay = ({ vehicleId, currentVehicle, isLoading }) => {
             const vehicleId = router.query.vehicleId
             dispatch(getVehicleById(vehicleId))
         }
-    }, [router.isReady])
+    }, [router.isReady, dispatch, router.query.vehicleId])
 
     if (isLoading) {
         return <p>Loading...</p>
@@ -32,7 +33,7 @@ const VehicleDisplay = ({ vehicleId, currentVehicle, isLoading }) => {
             </div>
             <div className="card-body">
             <h1 className="card-title pricing-card-title">{ formatCurrency(currentVehicle.price) }</h1>
-                <img style={{ display:'block', marginLeft:'auto', marginRight:'auto', maxWidth:'100%' }} 
+                <Image style={{ display:'block', marginLeft:'auto', marginRight:'auto', maxWidth:'100%' }} 
                     src={currentVehicle.description?.description?.style?.stockImage?.url}
                     alt={currentVehicle.name} />
                 <table className="table table-striped">

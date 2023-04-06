@@ -55,4 +55,5 @@ class VehicleDataService {
   }
 }
 
-export default new VehicleDataService();
+const vehicleDataServiceInstance = new VehicleDataService();
+export default vehicleDataServiceInstance

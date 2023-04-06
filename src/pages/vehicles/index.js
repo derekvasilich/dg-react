@@ -32,7 +32,7 @@ const VehicleList = ({ vehicles, filteredVehicles, filters, setFilters, minMaxPr
         if (router.isReady) {
             dispatch(getVehicles())
         }
-    }, [router.isReady])
+    }, [router.isReady, dispatch])
 
     let vehicleItems = filteredVehicles.map(vehicle => 
         <VehicleListItem key={ vehicle.id } 

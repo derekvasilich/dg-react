@@ -20,7 +20,7 @@ export default function VehicleSearch({
 
     useEffect(() => {
         dispatch(applyFilters({}))
-    }, [minMaxPrice])
+    }, [minMaxPrice, dispatch])
 
     let handleInputChange = function(key, value) {
         let ret = {...fields}
