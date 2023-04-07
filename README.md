@@ -7,3 +7,4 @@ Key features:
 * Redux reactive centralized store
 * JWT Token API authentication
 * Filtering and Sorting through Redux reducers
+* GitHub pipeline for build, lint, test

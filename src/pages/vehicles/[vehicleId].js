@@ -6,7 +6,8 @@ import VehicleDescription from "@/components/vehicle-description"
 import { getVehicleById, selectCurrentVehicle, selectLoading } from "@/store/vehicleSlice"
 import { useDispatch, connect } from 'react-redux';
 import { useRouter } from "next/router";
-import Image from "next/image";
+import DGCarousel from "@/components/dg-carousel";
+import { isEmpty } from "lodash";
 
 const VehicleDisplay = ({ vehicleId, currentVehicle, isLoading }) => {
     const dispatch = useDispatch()
@@ -26,6 +27,13 @@ const VehicleDisplay = ({ vehicleId, currentVehicle, isLoading }) => {
         return <p>Loading...</p>
     }
 
+    let stockImages = []
+    if (currentVehicle?.description?.description?.style) {
+        let styles = !isEmpty(currentVehicle?.description?.description?.style[0]) ? 
+            currentVehicle?.description?.description?.style :
+            [currentVehicle?.description?.description?.style];
+        stockImages = styles.map((style) => { return { ...style.stockImage, alt: currentVehicle.name || `${style.division._} ${style.model._} ${style.name}` } })
+    }
     return (
         <div className="card mb-4 shadow-sm">
             <div className="card-header">
@@ -33,9 +41,7 @@ const VehicleDisplay = ({ vehicleId, currentVehicle, isLoading }) => {
             </div>
             <div className="card-body">
             <h1 className="card-title pricing-card-title">{ formatCurrency(currentVehicle.price) }</h1>
-                <Image style={{ display:'block', marginLeft:'auto', marginRight:'auto', maxWidth:'100%' }} 
-                    src={currentVehicle.description?.description?.style?.stockImage?.url}
-                    alt={currentVehicle.name} />
+                <DGCarousel images={ stockImages } />
                 <table className="table table-striped">
                     <tbody>
                         <tr>
