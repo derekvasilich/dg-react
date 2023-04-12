@@ -6,6 +6,7 @@ export default function DGCarousel({ images }) {
     const carouselItems = images.map((image, index) => 
         <Carousel.Item key={ index } className={ `carousel-item${index ? '' : ' active'}` }>
             <Image className="d-block w-100"
+                        style={{ height: 'auto' }}
                         src={image.url}
                         width={image.width}
                         height={image.height}
